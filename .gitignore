@@ -1,0 +1,6 @@
+bin/
+.project
+.classpath
+.settings/
+local/*
+doc/Assignment 5.pdf

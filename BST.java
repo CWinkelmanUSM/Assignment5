@@ -43,8 +43,12 @@ public class BST<K extends Comparable<K>, V> {
 		return getRecur(root, key);
 	}
 	
-	private Node getRightChild(Node node) {
-		return node.
+	private int getRightChild(Node node) {
+		return node.rightChildren;
+	}
+	
+	private int getLeftChild(Node node) {
+		return node.leftChildren;
 	}
 	
 	private V getRecur(Node curr, K key) {

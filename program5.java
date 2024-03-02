@@ -15,14 +15,13 @@ import java.util.regex.Pattern;
  */
 
 public class program5 {
-	public static List<AccidentRecord> reader(String state, String city, String fileName) {
+	public static List<AccidentRecord> reader(String fileName) {
 		ArrayList<AccidentRecord> Report = new ArrayList<>();
 
 		// regex for pattern validation
 		Pattern statePat = Pattern.compile("^[A-Z]{2}$");
 		Pattern cityPat = Pattern.compile("^[a-zA-Z ]+$");
-		Matcher stateMatch = statePat.matcher(state);
-		Matcher cityMatch = cityPat.matcher(city);
+
 
 		if ((stateMatch.matches() == true) && (cityMatch.matches() == true)) {
 			try (FileReader fileReader = new FileReader("src\\accidentpack\\" + fileName)) {
@@ -55,14 +54,12 @@ public class program5 {
 		// was not able to test the program via command prompt.
 		Long startTime;
 		Long endTime;
-		String state = args[0];
-		String city = args[1];
-		String fileName = args[2];
+		String fileName = args[0];
 
 		List<AccidentRecord> Report = new ArrayList<>();
 
 		startTime = System.nanoTime();
-		Report = reader(state, city, fileName);
+		Report = reader(fileName);
 		endTime = System.nanoTime();
 		System.out.println((endTime - startTime) / 1000000000.0 + " seconds to read the records");
 

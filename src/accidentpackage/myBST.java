@@ -1,6 +1,8 @@
 package accidentpackage;
 
-public class myBST<A extends Comparable<AccidentRecord>> {
+import java.util.Comparator;
+
+public class myBST implements Comparator<AccidentRecord>{
 	/**
 	 * Represents a node in the binary search tree containing an AccidentRecord object.
 	 */
@@ -19,6 +21,9 @@ public class myBST<A extends Comparable<AccidentRecord>> {
 
 	private Node root = null;
 
+	private myBST(AccidentRecord starting) {
+		root = new Node(starting);
+	}
 	
 	/**
 	 * Compares two AccidentRecord objects based on their start times.
@@ -27,7 +32,7 @@ public class myBST<A extends Comparable<AccidentRecord>> {
 	 * @param b The second AccidentRecord object for comparison.
 	 * @return An integer representing the comparison result.
 	 */
-	private int compare(AccidentRecord a, AccidentRecord b) {
+	public int compare(AccidentRecord a, AccidentRecord b) {
 		return a.getStartTime().compareTo(b.getStartTime());
 	}
 

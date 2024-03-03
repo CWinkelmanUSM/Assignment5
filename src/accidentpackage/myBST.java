@@ -110,4 +110,14 @@ public class myBST implements Comparator<AccidentRecord>{
 			getRecur(curr.right, data);
 		return curr.data;
 	}
+	
+	public int search(String date) {
+		// TODO unstub
+		return 0;
+	}
+	
+	public int recursiveSearch(String date) {
+		// TODO unstub
+		return 0;
+	}
 }

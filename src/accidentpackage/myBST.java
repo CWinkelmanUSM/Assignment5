@@ -120,4 +120,8 @@ public class myBST implements Comparator<AccidentRecord>{
 		// TODO unstub
 		return 0;
 	}
+	
+	public int size() {
+		return root.leftChildren + root.rightChildren + 1;
+	}
 }

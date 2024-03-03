@@ -21,7 +21,7 @@ public class myBST implements Comparator<AccidentRecord>{
 
 	private Node root = null;
 
-	private myBST(AccidentRecord starting) {
+	public myBST(AccidentRecord starting) {
 		root = new Node(starting);
 	}
 	

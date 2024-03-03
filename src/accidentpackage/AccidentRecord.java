@@ -93,6 +93,16 @@ public class AccidentRecord implements Comparable<AccidentRecord> {
 		return this.startTime;
 
 	}
+	
+	/**
+	 * Gets the street attribute of the accident record.
+	 * 
+	 * @return The start time of the accident.
+	 */
+	public String getState() {
+		return this.state;
+
+	}	
 
 	@Override
 	public String toString() {

@@ -72,7 +72,7 @@ public class AccidentRecord implements Comparable<AccidentRecord> {
 	}
 
 	/**
-	 * Gets the street attribute of the accident record.
+	 * Returns the street attribute of the accident record.
 	 * 
 	 * @return The street of the accident.
 	 */
@@ -80,6 +80,11 @@ public class AccidentRecord implements Comparable<AccidentRecord> {
 		return this.street;
 	}
 
+	/**
+	 * Returns the county attribute of the accident record.
+	 * 
+	 * @return The county of the accident.
+	 */
 	public String getCounty() {
 		return this.county;
 	}
@@ -94,6 +99,11 @@ public class AccidentRecord implements Comparable<AccidentRecord> {
 
 	}
 
+	/**
+	 * Simple string representation of the record.
+	 * 
+	 * @return String print out of the record
+	 */
 	@Override
 	public String toString() {
 		return "AccidentRecord{" + "id='" + id + '\'' + ", severity=" + severity + ", startTime='" + startTime + '\''
@@ -103,6 +113,11 @@ public class AccidentRecord implements Comparable<AccidentRecord> {
 				+ '\'' + ", isDaytime=" + isDaytime + '}';
 	}
 
+	/**
+	 * Compares two records based on the visibility
+	 * 
+	 * @return String print out of the record
+	 */
 	@Override
 	public int compareTo(AccidentRecord o) {
 		return Double.compare(this.visibility, o.visibility);

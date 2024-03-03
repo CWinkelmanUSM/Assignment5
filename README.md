@@ -49,7 +49,8 @@ xx seconds to calculate this using recursive method
 Tasks:
 
 Phil
-TBD
+BST
+Program 5
 
 Charles
-TBD
+CalculateRecords

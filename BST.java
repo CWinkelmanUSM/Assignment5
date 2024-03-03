@@ -1,60 +1,108 @@
 package accidentpack;
 
-public class BST<K extends Comparable<K>, V> {
+public class BST<A extends Comparable<AccidentRecord>> {
+	/**
+	 * Represents a node in the binary search tree containing an AccidentRecord object.
+	 */
+	
 	private class Node {
-		K key;
-		V value;
+		AccidentRecord data;
 		Node left = null;
 		Node right = null;
 		int leftChildren = 0;
 		int rightChildren = 0;
 
-		Node(K key, V value) {
-			this.key = key;
-			this.value = value;
+		Node(AccidentRecord data) {
+			this.data = data;
 		}
 	}
 
 	private Node root = null;
 
-	private int compare(K a, K b) {
-		return a.compareTo(b);
+	
+	/**
+	 * Compares two AccidentRecord objects based on their start times.
+	 *
+	 * @param a The first AccidentRecord object for comparison.
+	 * @param b The second AccidentRecord object for comparison.
+	 * @return An integer representing the comparison result.
+	 */
+	private int compare(AccidentRecord a, AccidentRecord b) {
+		return a.getStartTime().compareTo(b.getStartTime());
 	}
 
-	public void add(K key, V value) {
-		root = addRecur(root, key, value);
+	/**
+	 * Adds a new AccidentRecord to the binary search tree based on start time.
+	 *
+	 * @param data The AccidentRecord data to be added to the tree.
+	 */
+	public void add(AccidentRecord data) {
+		root = addRecur(root, data);
 	}
 
-	private Node addRecur(Node curr, K key, V value) {
+	private Node addRecur(Node curr, AccidentRecord data) {
 		if (curr == null)
-			return new Node(key, value);
+			return new Node(data);
 		
-		if (compare(key, curr.key) < 0) {
-			curr.left = addRecur(curr.left, key, value);
+		if (compare(data, curr.data) < 0) {
+			curr.left = addRecur(curr.left, data);
 			curr.leftChildren += 1;
-		}
-		else if (compare(key, curr.key) > 0)
-			curr.right = addRecur(curr.right, key, value);
+		} else if (compare(data, curr.data) == 0) {
+			curr.right = addRecur(curr.right, data);
 			curr.rightChildren += 1;
+		} else if (compare(data, curr.data) > 0) {
+			curr.right = addRecur(curr.right, data);
+			curr.rightChildren += 1;
+		}
+
 		return curr;
 	}
-
-	public V get(K key) {
-		return getRecur(root, key);
+	
+	/**
+	 * Helper method that retrieves the AccidentRecord associated with the specified data from the tree.
+	 *
+	 * @param data The AccidentRecord data to be retrieved.
+	 * @return The AccidentRecord associated with the specified data.
+	 */
+	public AccidentRecord get(AccidentRecord data) {
+		return getRecur(root, data);
 	}
 	
-	private Node getRightChild(Node node) {
-		return node.
+	/**
+	 * Retrieves the number of right children for the given node.
+	 *
+	 * @param node The node for which to get the number of right children.
+	 * @return The number of right children for the given node.
+	 */
+	private int getRightChild(Node node) {
+		return node.rightChildren;
 	}
 	
-	private V getRecur(Node curr, K key) {
-		if (curr.key == key)
-			return curr.value;
+	/**
+	 * Retrieves the number of left children for the given node.
+	 *
+	 * @param node The node for which to get the number of left children.
+	 * @return The number of left children for the given node.
+	 */
+	private int getLeftChild(Node node) {
+		return node.leftChildren;
+	}
+	
+	/**
+	 * Recursively searches for the AccidentRecord associated with the specified data in the tree.
+	 *
+	 * @param curr The current node being considered during recursion.
+	 * @param data The AccidentRecord data to be searched for.
+	 * @return The AccidentRecord associated with the specified data.
+	 */
+	private AccidentRecord getRecur(Node curr, AccidentRecord data) {
+		if (curr.data == data)
+			return curr.data;
 		
-		if (compare(key, curr.key) < 0)
-			getRecur(curr.left, key);
-		else if (compare(key, curr.key) > 0)
-			getRecur(curr.right, key);
-		return curr.value;
+		if (compare(data, curr.data) < 0)
+			getRecur(curr.left, data);
+		else if (compare(data, curr.data) > 0)
+			getRecur(curr.right, data);
+		return curr.data;
 	}
 }

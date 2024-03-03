@@ -6,7 +6,7 @@ package accidentpackage;
  * visibility, weather condition, and daytime indication.
  */
 
-public class AccidentRecord implements Comparable<AccidentRecord> {
+public class AccidentRecord {
 	private String id;
 	private int severity;
 	private String startTime;
@@ -111,10 +111,5 @@ public class AccidentRecord implements Comparable<AccidentRecord> {
 				+ ", county='" + county + '\'' + ", state='" + state + '\'' + ", temperature=" + temperature
 				+ ", humidity=" + humidity + ", visibility=" + visibility + ", weatherCondition='" + weatherCondition
 				+ '\'' + ", isDaytime=" + isDaytime + '}';
-	}
-
-	@Override
-	public int compareTo(AccidentRecord o) {
-		return Double.compare(this.visibility, o.visibility);
 	}
 }

@@ -1,9 +1,11 @@
 package accidentpack;
+
+import java.util.Comparator;
+
 /**
  * Author Philip Lane
- * @param <A>
  */
-public class BST {
+public class BST implements Comparator<AccidentRecord> {
 	/**
 	 * Represents a node in the binary search tree containing an AccidentRecord object.
 	 */
@@ -33,7 +35,7 @@ public class BST {
 	 * @param b The second AccidentRecord object for comparison.
 	 * @return An integer representing the comparison result.
 	 */
-	private int compare(AccidentRecord a, AccidentRecord b) {
+	public int compare(AccidentRecord a, AccidentRecord b) {
 		return a.getStartTime().compareTo(b.getStartTime());
 	}
 
@@ -110,5 +112,13 @@ public class BST {
 		else if (compare(data, curr.data) > 0)
 			getRecur(curr.right, data);
 		return curr.data;
+	}
+	
+	public int search(String date) {
+		return 0;
+	}
+	
+	public int recursiveSearch(String date) {
+		return 0;
 	}
 }

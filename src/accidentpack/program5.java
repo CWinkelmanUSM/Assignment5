@@ -31,6 +31,7 @@ public class program5 {
 			BufferedReader reader = new BufferedReader(fileReader);
 			String line = "";
 			String[] data;
+			reader.readLine();
 			while ((line = reader.readLine()) != null) {
 				data = line.split(",");
 				String state = data[7];

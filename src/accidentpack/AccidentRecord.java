@@ -107,6 +107,10 @@ public class AccidentRecord {
 	public String getID() {
 		return this.id;
 	}
+	
+	public String getDate() {
+		return this.startTime;
+	}
 
 	@Override
 	public String toString() {

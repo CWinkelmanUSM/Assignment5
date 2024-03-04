@@ -77,26 +77,6 @@ public class BST implements Comparator<AccidentRecord> {
 	}
 	
 	/**
-	 * Retrieves the number of right children for the given node.
-	 *
-	 * @param node The node for which to get the number of right children.
-	 * @return The number of right children for the given node.
-	 */
-	private int getRightChildren(Node node) {
-		return node.rightChildren;
-	}
-	
-	/**
-	 * Retrieves the number of left children for the given node.
-	 *
-	 * @param node The node for which to get the number of left children.
-	 * @return The number of left children for the given node.
-	 */
-	private int getLeftChildren(Node node) {
-		return node.leftChildren;
-	}
-	
-	/**
 	 * Recursively searches for the AccidentRecord associated with the specified data in the tree.
 	 *
 	 * @param curr The current node being considered during recursion.
@@ -113,12 +93,33 @@ public class BST implements Comparator<AccidentRecord> {
 			getRecur(curr.right, data);
 		return curr.data;
 	}
-	
+
 	public int search(String date) {
-		return 0;
+		Node localRoot = root;
+		int counter = 0;
+
+		while(localRoot != null) {
+			if (localRoot.data.getStartTime().compareTo(date) < 0) {
+				localRoot = localRoot.right;
+			} else {
+				counter += localRoot.rightChildren + 1;
+				localRoot = localRoot.left;
+			}
+		}
+		
+		return counter;
 	}
 	
-	public int recursiveSearch(String date) {
-		return 0;
+	public int recurSearch(String date) {
+		return recurSearch(date, root);
+	}
+	
+	private int recurSearch(String date, Node localRoot) {
+		if (localRoot == null) {
+			return 0;
+		} if (localRoot.data.getStartTime().compareTo(date) >= 0) {
+			return 1 + recurSearch(date, localRoot.left) + recurSearch(date, localRoot.right);
+		}
+		return recurSearch(date, localRoot.right);
 	}
 }

@@ -70,7 +70,5 @@ public class program5 {
 		reports = reader(filePath);
 		endTime = System.nanoTime();
 		System.out.println((endTime - startTime) / 1000000000.0 + " seconds to read the records");
-
-
 	}
 }

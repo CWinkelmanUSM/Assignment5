@@ -112,4 +112,14 @@ public class AccidentRecord {
 				+ ", humidity=" + humidity + ", visibility=" + visibility + ", weatherCondition='" + weatherCondition
 				+ '\'' + ", isDaytime=" + isDaytime + '}';
 	}
+
+	/**
+	 * Compares two records based on the visibility
+	 * 
+	 * @return String print out of the record
+	 */
+	@Override
+	public int compareTo(AccidentRecord o) {
+		return Double.compare(this.visibility, o.visibility);
+	}
 }

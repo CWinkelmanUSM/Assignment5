@@ -103,6 +103,10 @@ public class AccidentRecord {
 		return this.state;
 
 	}	
+	
+	public String getID() {
+		return this.id;
+	}
 
 	@Override
 	public String toString() {

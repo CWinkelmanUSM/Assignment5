@@ -24,8 +24,8 @@ public class program5 {
 	 * @return
 	 */
 
-	public static HashMap<String, BST<AccidentRecord>> reader(String fileName) {
-		HashMap<String, BST<AccidentRecord>> stateBSTMap = new HashMap<String, BST<AccidentRecord>>();
+	public static HashMap<String, BST> reader(String fileName) {
+		HashMap<String, BST> stateBSTMap = new HashMap<String, BST>();
 
 		try (FileReader fileReader = new FileReader("src\\accidentpack\\" + fileName)) {
 			BufferedReader reader = new BufferedReader(fileReader);
@@ -41,7 +41,7 @@ public class program5 {
 				if (stateBSTMap.containsKey(state)) {
 					stateBSTMap.get(state).add(entry);
 				} else {
-					stateBSTMap.put(state, new BST<AccidentRecord>(entry));
+					stateBSTMap.put(state, new BST(entry));
 				}
 
 			}
@@ -63,7 +63,7 @@ public class program5 {
 		Long endTime;
 		String fileName = args[0];
 
-		HashMap<String, BST<AccidentRecord>> Report = new HashMap<String, BST<AccidentRecord>>();
+		HashMap<String, BST> Report = new HashMap<String, BST>();
 
 		startTime = System.nanoTime();
 		Report = reader(fileName);

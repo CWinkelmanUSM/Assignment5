@@ -3,7 +3,7 @@ package accidentpack;
  * Author Philip Lane
  * @param <A>
  */
-public class BST<A extends Comparable<AccidentRecord>> {
+public class BST {
 	/**
 	 * Represents a node in the binary search tree containing an AccidentRecord object.
 	 */

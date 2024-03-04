@@ -1,4 +1,4 @@
-package accidentpackage;
+package accidentpack;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -16,78 +16,60 @@ import java.util.regex.Pattern;
  */
 
 public class program5 {
-	public static List<AccidentRecord> reader(String state, String city, String fileName) {
-		ArrayList<AccidentRecord> Report = new ArrayList<>();
+	/**
+	 * Accepts a file name and constructs a HashMap of Binary Search Trees of
+	 * AccidentRecords for each state, and returns the new HashMap.
+	 * 
+	 * @param fileName
+	 * @return
+	 */
 
-		// regex for pattern validation
-		Pattern statePat = Pattern.compile("^[A-Z]{2}$");
-		Pattern cityPat = Pattern.compile("^[a-zA-Z ]+$");
-		Matcher stateMatch = statePat.matcher(state);
-		Matcher cityMatch = cityPat.matcher(city);
+	public static HashMap<String, BST<AccidentRecord>> reader(String fileName) {
+		HashMap<String, BST<AccidentRecord>> stateBSTMap = new HashMap<String, BST<AccidentRecord>>();
 
-		if ((stateMatch.matches() == true) && (cityMatch.matches() == true)) {
-			try (FileReader fileReader = new FileReader("src\\accidentpack\\" + fileName)) {
-				BufferedReader reader = new BufferedReader(fileReader);
-				String line = "";
-				String[] data;
-				while ((line = reader.readLine()) != null) {
-					data = line.split(",");
-					if (data[5].equals(city) && data[7].equals(state)) {
-						AccidentRecord entry = new AccidentRecord(data[0], Integer.parseInt(data[1]), data[2], data[3],
-								data[4], data[5], data[6], data[7], Double.parseDouble(data[8]),
-								Double.parseDouble(data[9]), Double.parseDouble(data[10]), data[11], data[12]);
-
-						Report.add(entry);
-					}
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-
-		return Report;
-	}
-	
-	
-	public static void test(String filePath) {
-		HashMap<String, myBST> states = new HashMap<>();
-		try (FileReader fileReader = new FileReader(filePath)) {
+		try (FileReader fileReader = new FileReader("src\\accidentpack\\" + fileName)) {
 			BufferedReader reader = new BufferedReader(fileReader);
-			String line;
+			String line = "";
 			String[] data;
-			reader.readLine();
 			while ((line = reader.readLine()) != null) {
 				data = line.split(",");
-				AccidentRecord entry = new AccidentRecord(data[0], Integer.parseInt(data[1]), data[2], data[3],
-							data[4], data[5], data[6], data[7], Double.parseDouble(data[8]),
-							Double.parseDouble(data[9]), Double.parseDouble(data[10]), data[11], data[12]);
-				if (states.containsKey(entry.getState())) {
-					states.get(entry.getState()).add(entry);
+				String state = data[7];
+				AccidentRecord entry = new AccidentRecord(data[0], Integer.parseInt(data[1]), data[2], data[3], data[4],
+						data[5], data[6], data[7], Double.parseDouble(data[8]), Double.parseDouble(data[9]),
+						Double.parseDouble(data[10]), data[11], data[12]);
+
+				if (stateBSTMap.containsKey(state)) {
+					stateBSTMap.get(state).add(entry);
 				} else {
-					states.put(entry.getState(), new myBST(entry));
+					stateBSTMap.put(state, new BST<AccidentRecord>(entry));
 				}
-				int total = 0;
-				
-				for (myBST tree : states.values()) {
-					System.out.println("Nodes:" + tree.size());
-					total += tree.size();
-				}
-				System.out.println("Total: " + total);
+
 			}
 		} catch (IOException e) {
-				e.printStackTrace();
+			e.printStackTrace();
 		}
+
+		return stateBSTMap;
 	}
-	
-	// Unimplemented functions
-	
+
+	/**
+	 * Main method that accepts a file name through the command line arguments list.
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
-		Timer t = new Timer();
-		
-		t.start();
-		test("resources/accidents_small_sample.csv");
-		t.stop();
-		
-		System.out.println("Built in " + t.getTime());
+		// String[] args2 = { "CA", "Los Angeles", "accidents.csv" }; reference list. I
+		Long startTime;
+		Long endTime;
+		String fileName = args[0];
+
+		HashMap<String, BST<AccidentRecord>> Report = new HashMap<String, BST<AccidentRecord>>();
+
+		startTime = System.nanoTime();
+		Report = reader(fileName);
+		endTime = System.nanoTime();
+		System.out.println((endTime - startTime) / 1000000000.0 + " seconds to read the records");
+
+
 	}
 }

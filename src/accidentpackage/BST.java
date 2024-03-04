@@ -1,8 +1,9 @@
-package accidentpackage;
-
-import java.util.Comparator;
-
-public class myBST implements Comparator<AccidentRecord>{
+package accidentpack;
+/**
+ * Author Philip Lane
+ * @param <A>
+ */
+public class BST<A extends Comparable<AccidentRecord>> {
 	/**
 	 * Represents a node in the binary search tree containing an AccidentRecord object.
 	 */
@@ -20,9 +21,9 @@ public class myBST implements Comparator<AccidentRecord>{
 	}
 
 	private Node root = null;
-
-	public myBST(AccidentRecord starting) {
-		root = new Node(starting);
+	
+	public BST(AccidentRecord a) {
+		root = new Node(a);
 	}
 	
 	/**
@@ -32,7 +33,7 @@ public class myBST implements Comparator<AccidentRecord>{
 	 * @param b The second AccidentRecord object for comparison.
 	 * @return An integer representing the comparison result.
 	 */
-	public int compare(AccidentRecord a, AccidentRecord b) {
+	private int compare(AccidentRecord a, AccidentRecord b) {
 		return a.getStartTime().compareTo(b.getStartTime());
 	}
 
@@ -79,7 +80,7 @@ public class myBST implements Comparator<AccidentRecord>{
 	 * @param node The node for which to get the number of right children.
 	 * @return The number of right children for the given node.
 	 */
-	private int getRightChild(Node node) {
+	private int getRightChildren(Node node) {
 		return node.rightChildren;
 	}
 	
@@ -89,7 +90,7 @@ public class myBST implements Comparator<AccidentRecord>{
 	 * @param node The node for which to get the number of left children.
 	 * @return The number of left children for the given node.
 	 */
-	private int getLeftChild(Node node) {
+	private int getLeftChildren(Node node) {
 		return node.leftChildren;
 	}
 	
@@ -109,19 +110,5 @@ public class myBST implements Comparator<AccidentRecord>{
 		else if (compare(data, curr.data) > 0)
 			getRecur(curr.right, data);
 		return curr.data;
-	}
-	
-	public int search(String date) {
-		// TODO unstub
-		return 0;
-	}
-	
-	public int recursiveSearch(String date) {
-		// TODO unstub
-		return 0;
-	}
-	
-	public int size() {
-		return root.leftChildren + root.rightChildren + 1;
 	}
 }

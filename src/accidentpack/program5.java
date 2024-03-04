@@ -3,6 +3,7 @@ package accidentpack;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -52,6 +53,50 @@ public class program5 {
 
 		return stateBSTMap;
 	}
+	
+	public static void searchMenu(HashMap<String, BST> reports) {
+		Timer t = new Timer();
+		int s, rs;
+		BST tree;
+		String date, state;
+		boolean tryAgain = true;
+		try (BufferedReader inputReader = new BufferedReader(new InputStreamReader(System.in));) {
+			while (tryAgain) {
+				System.out.print("Enter the state (e.g., IL): ");
+				state = inputReader.readLine();
+				if (!reports.containsKey(state)) {
+					System.out.println("Unable to find state " + state);
+					System.out.print("Would you like to try again? (y to continue) ");
+					tryAgain = inputReader.readLine().equalsIgnoreCase("y");
+				} else {
+					tree = reports.get(state);
+					System.out.print("Enter the date (e.g., 2022-09-08): ");
+					date = inputReader.readLine();
+					
+					Long startTime;
+					Long endTime;
+					startTime = System.nanoTime();
+					s = tree.search(date);
+					endTime = System.nanoTime();
+				
+					System.out.printf("%d reports are available for %s on and after the date %s\n", s, state, date);
+					System.out.println((endTime - startTime) / 1000000000.0 + " seconds to read the records");
+					
+					t.start();
+					rs = tree.recurSearch(date);
+					t.stop();
+					System.out.printf("%d reports are available for %s on and after the date %s\n", rs, state, date);
+					System.out.printf("%.10f seconds to calculate this using recursive method\n", t.getTime());
+
+					System.out.print("Would you like to search again? (y to continue) ");
+					tryAgain = inputReader.readLine().equalsIgnoreCase("y");
+				}
+
+			}
+		} catch (IOException ex) {
+				ex.printStackTrace();
+		}
+	}
 
 	/**
 	 * Main method that accepts a file name through the command line arguments list.
@@ -70,5 +115,7 @@ public class program5 {
 		reports = reader(filePath);
 		endTime = System.nanoTime();
 		System.out.println((endTime - startTime) / 1000000000.0 + " seconds to read the records");
+		
+		searchMenu(reports);
 	}
 }

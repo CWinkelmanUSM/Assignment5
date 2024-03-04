@@ -20,14 +20,14 @@ public class program5 {
 	 * Accepts a file name and constructs a HashMap of Binary Search Trees of
 	 * AccidentRecords for each state, and returns the new HashMap.
 	 * 
-	 * @param fileName
+	 * @param filePath
 	 * @return
 	 */
 
-	public static HashMap<String, BST> reader(String fileName) {
+	public static HashMap<String, BST> reader(String filePath) {
 		HashMap<String, BST> stateBSTMap = new HashMap<String, BST>();
 
-		try (FileReader fileReader = new FileReader("src\\accidentpack\\" + fileName)) {
+		try (FileReader fileReader = new FileReader(filePath)) {
 			BufferedReader reader = new BufferedReader(fileReader);
 			String line = "";
 			String[] data;
@@ -61,12 +61,12 @@ public class program5 {
 		// String[] args2 = { "CA", "Los Angeles", "accidents.csv" }; reference list. I
 		Long startTime;
 		Long endTime;
-		String fileName = args[0];
+		String filePath = args[0];
 
 		HashMap<String, BST> Report = new HashMap<String, BST>();
 
 		startTime = System.nanoTime();
-		Report = reader(fileName);
+		Report = reader(filePath);
 		endTime = System.nanoTime();
 		System.out.println((endTime - startTime) / 1000000000.0 + " seconds to read the records");
 

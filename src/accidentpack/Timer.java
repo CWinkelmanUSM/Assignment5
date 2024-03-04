@@ -1,4 +1,4 @@
-package accidentpackage;
+package accidentpack;
 
 /**
  * Class implements a timer for measuring task duration

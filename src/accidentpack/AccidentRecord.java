@@ -1,4 +1,4 @@
-package accidentpackage;
+package accidentpack;
 
 /**
  * Represents an accident record with various attributes such as id, severity,

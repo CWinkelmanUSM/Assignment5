@@ -1,5 +1,8 @@
 package accidentpack;
-
+/**
+ * Author Philip Lane
+ * @param <A>
+ */
 public class BST<A extends Comparable<AccidentRecord>> {
 	/**
 	 * Represents a node in the binary search tree containing an AccidentRecord object.
@@ -18,7 +21,10 @@ public class BST<A extends Comparable<AccidentRecord>> {
 	}
 
 	private Node root = null;
-
+	
+	public BST(AccidentRecord a) {
+		root = new Node(a);
+	}
 	
 	/**
 	 * Compares two AccidentRecord objects based on their start times.
@@ -74,7 +80,7 @@ public class BST<A extends Comparable<AccidentRecord>> {
 	 * @param node The node for which to get the number of right children.
 	 * @return The number of right children for the given node.
 	 */
-	private int getRightChild(Node node) {
+	private int getRightChildren(Node node) {
 		return node.rightChildren;
 	}
 	
@@ -84,7 +90,7 @@ public class BST<A extends Comparable<AccidentRecord>> {
 	 * @param node The node for which to get the number of left children.
 	 * @return The number of left children for the given node.
 	 */
-	private int getLeftChild(Node node) {
+	private int getLeftChildren(Node node) {
 		return node.leftChildren;
 	}
 	

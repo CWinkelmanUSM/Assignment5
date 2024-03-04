@@ -64,10 +64,10 @@ public class program5 {
 		Long endTime;
 		String filePath = args[0];
 
-		HashMap<String, BST> Report = new HashMap<String, BST>();
+		HashMap<String, BST> reports = new HashMap<String, BST>();
 
 		startTime = System.nanoTime();
-		Report = reader(filePath);
+		reports = reader(filePath);
 		endTime = System.nanoTime();
 		System.out.println((endTime - startTime) / 1000000000.0 + " seconds to read the records");
 

@@ -55,3 +55,8 @@ AccidentRecord - Provided
 
 Charles
 CalculateRecords
+
+Time Complexity:
+Reader - O(N)
+AddRecur - O(log(N))
+GetRecur - O(log(N))

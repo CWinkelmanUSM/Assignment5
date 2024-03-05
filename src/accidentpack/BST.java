@@ -3,7 +3,7 @@ package accidentpack;
 import java.util.Comparator;
 
 /**
- * Author Philip Lane
+ * Author Philip Lane + Charles Winkelman
  */
 public class BST implements Comparator<AccidentRecord> {
 	/**
@@ -24,6 +24,10 @@ public class BST implements Comparator<AccidentRecord> {
 
 	private Node root = null;
 	
+	/**
+	 * Single AccidentRecord constructor
+	 * @param a  starting AccidentRecord for tree
+	 */
 	public BST(AccidentRecord a) {
 		root = new Node(a);
 	}
@@ -94,6 +98,14 @@ public class BST implements Comparator<AccidentRecord> {
 		return curr.data;
 	}
 
+	/**
+	 * Counts AccidentRecords that happened on or after provided date.
+	 * Loops through BST, adding nodes and their right children
+	 * if the node's report happened on or after date.
+	 * 
+	 * @param date  String in form of yyyy-mm-dd
+	 * @return  number of records that happened on or after date
+	 */
 	public int search(String date) {
 		Node localRoot = root;
 		int counter = 0;
@@ -110,6 +122,14 @@ public class BST implements Comparator<AccidentRecord> {
 		return counter;
 	}
 	
+	/**
+	 * Counts AccidentRecords that happened on or after provided date recursively.
+	 * Recursively adds to counter if node (and applicable children) happened on
+	 * or after date. 
+	 * 
+	 * @param date  String in form of yyyy-mm-dd
+	 * @return  number of records that happened on or after date
+	 */
 	public int recurSearch(String date) {
 		return recurSearch(date, root);
 	}

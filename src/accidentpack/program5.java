@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 
 /**
- * Author Philip Lane
+ * Author Philip Lane + Charles Winkelman
  */
 
 public class program5 {
@@ -15,8 +15,8 @@ public class program5 {
 	 * Accepts a file name and constructs a HashMap of Binary Search Trees of
 	 * AccidentRecords for each state, and returns the new HashMap.
 	 * 
-	 * @param filePath
-	 * @return
+	 * @param filePath path to file
+	 * @return AccidentRecords in CSV parsed into BSTs, keyed to their states in a HashMap
 	 */
 
 	public static HashMap<String, BST> reader(String filePath) {
@@ -48,6 +48,14 @@ public class program5 {
 		return stateBSTMap;
 	}
 	
+	/**
+	 * Accepts a HashMap (key of abbreviated states, value of BST of AccidentRecords) and 
+	 * prompts the user for a state abbrev and date in the form of yyyy-mm-dd. If the state is 
+	 * found in the HashMap keys, it will use the recursive and nonrecursive search methods in
+	 * BST to find the number of AccidentReports after the provided date in the provided state.
+	 * Repeated searches can be made by typing 'y' when prompted.
+	 * @param reports  a HashMap with state abbrev as keys and a BST of AccidentRecords as values
+	 */
 	public static void searchMenu(HashMap<String, BST> reports) {
 		Timer t = new Timer();
 		int s, rs;
@@ -92,7 +100,7 @@ public class program5 {
 	/**
 	 * Main method that accepts a file name through the command line arguments list.
 	 * 
-	 * @param args
+	 * @param args  command line arguments
 	 */
 	public static void main(String[] args) {
 		Timer t = new Timer();

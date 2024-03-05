@@ -4,7 +4,7 @@ package accidentpack;
  * Class implements a timer for measuring task duration
  *
  * Setters are not implemented as time is only set by startTimer and endTimer
- * Changed to no longer print timer, returns timer duration in seconds instead
+ * @author Charles Winkelman
  */
 public class Timer{
 
@@ -32,14 +32,20 @@ public class Timer{
 
     /**
      * Returns timer duration in seconds
-     * Pre: started and stopped timer
+     * @pre: started and stopped timer
      *
-     * @return timer end - timer start / 1000
+     * @return timer end - timer start / 1e-9
      */
 	public double getSeconds() {
       return (timerEndTime - timerStartTime) / 1000000000.0;
     }
 	
+	/**
+	 * Returns timer duration in milliseconds
+	 * @pre: started and stopped timer
+	 * 
+	 * @return timer end - timer start / 1e-6
+	 */
 	public double getMilliseconds() {
 		return (timerEndTime - timerStartTime) / 1000000.0;
 	}

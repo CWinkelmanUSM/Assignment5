@@ -103,15 +103,16 @@ public class AccidentRecord {
 		return this.state;
 
 	}	
-	
+
+	/**
+	 * Gets the ID attribute of the accident record.
+	 * 
+	 * @return The ID of the accident.
+	 */	
 	public String getID() {
 		return this.id;
 	}
 	
-	public String getDate() {
-		return this.startTime;
-	}
-
 	@Override
 	public String toString() {
 		return "AccidentRecord{" + "id='" + id + '\'' + ", severity=" + severity + ", startTime='" + startTime + '\''

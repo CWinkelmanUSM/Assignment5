@@ -54,9 +54,23 @@ Program 5 - main and reader methods
 AccidentRecord - Provided
 
 Charles
-CalculateRecords
+search
+recursive search
+menu
 
 Time Complexity:
+
+Phil:
 Reader - O(N)
 AddRecur - O(log(N))
 GetRecur - O(log(N))
+
+Charles:
+search - worst case: O(N)  best case: 0(1)  average case: O(log(N))
+    Worst case would be a chain where each record is before its parent.
+    Best case would be all records are after their parent and the summation is done for us during insert.
+    Average is traversing the height of the tree in Nodes in a complete binary tree.
+
+recurSearch - worst case: O(N)  best case: O(log(N))  average case: O(N)
+    Average case involves visiting about half of the nodes in the tree to check if they are null or before date.
+

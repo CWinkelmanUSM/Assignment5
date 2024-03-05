@@ -4,13 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Author Philip Lane
@@ -73,20 +67,17 @@ public class program5 {
 					System.out.print("Enter the date (e.g., 2022-09-08): ");
 					date = inputReader.readLine();
 					
-					Long startTime;
-					Long endTime;
-					startTime = System.nanoTime();
+					t.start();
 					s = tree.search(date);
-					endTime = System.nanoTime();
-				
+					t.stop();
 					System.out.printf("%d reports are available for %s on and after the date %s\n", s, state, date);
-					System.out.println((endTime - startTime) / 1000000000.0 + " seconds to read the records");
+					System.out.printf("%.10f seconds to calculate this using children count fields\n", t.getSeconds());
 					
 					t.start();
 					rs = tree.recurSearch(date);
 					t.stop();
 					System.out.printf("%d reports are available for %s on and after the date %s\n", rs, state, date);
-					System.out.printf("%.10f seconds to calculate this using recursive method\n", t.getTime());
+					System.out.printf("%.10f seconds to calculate this using recursive method\n", t.getSeconds());
 
 					System.out.print("Would you like to search again? (y to continue) ");
 					tryAgain = inputReader.readLine().equalsIgnoreCase("y");
@@ -104,17 +95,15 @@ public class program5 {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// String[] args2 = { "CA", "Los Angeles", "accidents.csv" }; reference list. I
-		Long startTime;
-		Long endTime;
+		Timer t = new Timer();
 		String filePath = args[0];
 
 		HashMap<String, BST> reports = new HashMap<String, BST>();
 
-		startTime = System.nanoTime();
+		t.start();
 		reports = reader(filePath);
-		endTime = System.nanoTime();
-		System.out.println((endTime - startTime) / 1000000000.0 + " seconds to read the records");
+		t.stop();
+		System.out.printf("%.10f seconds to read the records\n", t.getSeconds());
 		
 		searchMenu(reports);
 	}

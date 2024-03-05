@@ -20,14 +20,14 @@ public class Timer{
      * Sets timer start to now
      */
 	public void start() {
-		timerStartTime = System.currentTimeMillis();
+		timerStartTime = System.nanoTime();
 	}
 
     /**
      * Sets timer end to now
      */
 	public void stop() {
-      timerEndTime = System.currentTimeMillis();
+      timerEndTime = System.nanoTime();
   }
 
     /**
@@ -36,9 +36,13 @@ public class Timer{
      *
      * @return timer end - timer start / 1000
      */
-  public double getTime() {
-      return ((double) (timerEndTime - timerStartTime)) / 1000;
+	public double getSeconds() {
+      return (timerEndTime - timerStartTime) / 1000000000.0;
     }
+	
+	public double getMilliseconds() {
+		return (timerEndTime - timerStartTime) / 1000000.0;
+	}
 
     /**
      * Get start time
